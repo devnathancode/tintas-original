@@ -81,9 +81,6 @@ function carrinhoAnonimo(req, res, next) {
   next();
 }
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/index.html', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-
 app.get('/api', (req, res) => {
   res.json({ status: 'ok', mensagem: 'API Tintas Super Casa rodando ✅' });
 });
@@ -314,7 +311,14 @@ app.post('/api/webhook/getnet', express.json(), async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`\n✅ API rodando em http://localhost:${PORT}`);
-  console.log(`🔒 Segurança: helmet + rate limit + bcrypt + JWT\n`);
-});
+// Na Vercel (ambiente serverless) o app é exportado e a própria Vercel
+// cuida de "ligar" as requisições — não rodamos app.listen() lá.
+// Localmente (node server.js) continuamos rodando normal com listen().
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n✅ API rodando em http://localhost:${PORT}`);
+    console.log(`🔒 Segurança: helmet + rate limit + bcrypt + JWT\n`);
+  });
+}
+
+module.exports = app;
