@@ -504,8 +504,9 @@ footer{background:linear-gradient(180deg,#0A2568 0%,#071A4A 100%);color:#fff;pad
   .hamburger{display:flex}
   .header-top{height:60px;padding:0 14px;gap:10px}
   .logo{font-size:1.05rem}
-  #badge-24h{top:110px;font-size:.68rem;padding:8px 10px 8px 9px}
-  #badge-24h span{font-size:.64rem}
+  #badge-24h{top:108px;font-size:.62rem;padding:7px 9px 7px 8px;gap:5px;border-radius:10px 0 0 10px;max-width:78px}
+  #badge-24h span{font-size:.58rem;line-height:1.2;white-space:nowrap}
+  #badge-24h .pulse-dot{width:7px;height:7px;flex-shrink:0}
 
   /* HERO */
   #hero{padding:52px 14px 40px}
@@ -562,6 +563,8 @@ footer{background:linear-gradient(180deg,#0A2568 0%,#071A4A 100%);color:#fff;pad
 }
 
 @media(max-width:480px){
+  #badge-24h{top:96px;padding:6px 8px 6px 7px;max-width:68px}
+  #badge-24h span{font-size:.54rem}
   .logo{font-size:.92rem}
   #hero{padding:42px 12px 36px}
   .hero-title{font-size:1.48rem}
