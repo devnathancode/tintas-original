@@ -81,6 +81,8 @@ function carrinhoAnonimo(req, res, next) {
   next();
 }
 
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
 app.get('/api', (req, res) => {
   res.json({ status: 'ok', mensagem: 'API Tintas Super Casa rodando ✅' });
 });
