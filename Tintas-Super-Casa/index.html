@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tintas Super Casa – Diadema, SP</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --blue-dark:#0D47A1;--blue-mid:#1565C0;--yellow:#FFC107;--white:#FFFFFF;
+  --gray-light:#F5F5F5;--gray-mid:#E0E0E0;--text-dark:#1A1A2E;--text-body:#4A4A6A;
+  --shadow:0 4px 24px rgba(13,71,161,.13);--shadow-lg:0 8px 40px rgba(13,71,161,.18);
+  --radius:14px;--transition:.3s cubic-bezier(.4,0,.2,1);
+  --cafe:#6B4C3B;--cromo:#A8B5C0;--verde-sage:#7A9E7E;
+}
+[data-theme="dark"]{
+  --white:#1A1A2E;--gray-light:#232344;--gray-mid:#2E2E50;
+  --text-dark:#F0F0FF;--text-body:#B0B0D0;
+  --shadow:0 4px 24px rgba(0,0,0,.4);--shadow-lg:0 8px 40px rgba(0,0,0,.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;transition:background var(--transition),color var(--transition)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--gray-light)}
+::-webkit-scrollbar-thumb{background:var(--blue-mid);border-radius:3px}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--blue-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s,visibility .5s}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-logo{color:#fff;font-size:2rem;font-weight:800;letter-spacing:2px;margin-bottom:24px;animation:pulse 1s infinite alternate}
+.loader-bar{width:200px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
+.loader-bar-fill{height:100%;background:var(--yellow);border-radius:2px;animation:loadBar 1.8s ease forwards}
+@keyframes pulse{from{opacity:.7}to{opacity:1}}
+@keyframes loadBar{from{width:0}to{width:100%}}
+
+/* BADGE ABERTO 24H */
+#badge-24h{position:fixed;top:140px;right:0;z-index:450;background:linear-gradient(135deg,#00C853,#00E676);color:#fff;font-size:.75rem;font-weight:800;padding:10px 14px 10px 12px;border-radius:12px 0 0 12px;box-shadow:-4px 4px 16px rgba(0,200,83,.4);cursor:pointer;transition:var(--transition);display:flex;align-items:center;gap:7px;writing-mode:horizontal-tb}
+#badge-24h:hover{padding-right:20px}
+#badge-24h .pulse-dot{width:9px;height:9px;border-radius:50%;background:#fff;animation:pulseDot 1.2s infinite}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.7}}
+#badge-24h span{font-size:.7rem;font-weight:700;letter-spacing:.3px;line-height:1.3}
+
+/* PROMO BANNER */
+#promo-banner{background:var(--yellow);color:var(--blue-dark);text-align:center;padding:10px 40px;font-size:.88rem;font-weight:600;position:relative;z-index:100}
+#promo-banner span{margin:0 6px}
+#close-banner{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--blue-dark);opacity:.7}
+#close-banner:hover{opacity:1}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:500;background:var(--blue-dark);box-shadow:var(--shadow)}
+.header-top{max-width:1400px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:16px}
+.logo{color:#fff;font-size:1.3rem;font-weight:900;letter-spacing:.5px;white-space:nowrap}
+.logo span{color:var(--yellow)}
+
+/* MEGAMENU NAV */
+.main-nav{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-item{position:relative}
+.nav-link{color:rgba(255,255,255,.88);font-size:.86rem;font-weight:500;padding:8px 13px;border-radius:8px;transition:var(--transition);display:flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.13)}
+.nav-link i.fa-chevron-down{font-size:.65rem;transition:transform .2s}
+.nav-item:hover .nav-link i.fa-chevron-down{transform:rotate(180deg)}
+.nav-link.ofertas-link{background:rgba(255,193,7,.18);color:var(--yellow);border:1px solid rgba(255,193,7,.3)}
+.nav-link.ofertas-link:hover{background:rgba(255,193,7,.3)}
+
+/* MEGA DROPDOWN */
+.mega-drop{position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--white);border-radius:16px;box-shadow:0 16px 60px rgba(0,0,0,.18);padding:24px;z-index:600;min-width:680px;opacity:0;visibility:hidden;transition:opacity .2s,transform .2s;transform:translateX(-50%) translateY(8px);border:1.5px solid var(--gray-mid)}
+.nav-item:hover .mega-drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mega-col h5{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--blue-mid);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--yellow)}
+.mega-col ul{display:flex;flex-direction:column;gap:4px}
+.mega-col ul a{font-size:.82rem;color:var(--text-body);padding:5px 8px;border-radius:6px;transition:var(--transition);display:flex;align-items:center;gap:7px}
+.mega-col ul a:hover{background:var(--gray-light);color:var(--blue-dark)}
+.mega-col ul a i{font-size:.8rem;color:var(--yellow);width:16px}
+
+/* SIMPLE DROPDOWN */
+.simple-drop{position:absolute;top:calc(100% + 4px);left:0;background:var(--white);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.15);padding:12px;z-index:600;min-width:200px;opacity:0;visibility:hidden;transition:opacity .2s,transform .2s;transform:translateY(8px);border:1.5px solid var(--gray-mid)}
+.nav-item:hover .simple-drop{opacity:1;visibility:visible;transform:translateY(0)}
+.simple-drop a{display:block;padding:9px 14px;font-size:.86rem;color:var(--text-dark);border-radius:8px;transition:var(--transition)}
+.simple-drop a:hover{background:var(--gray-light);color:var(--blue-mid)}
+.loja-container{
+    position: relative;
+    max-width: 1100px;
+    margin: 30px auto 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,.15);
+}
+
+.loja-img{
+    width:100%;
+    height:550px;
+    object-fit:cover;
+}
+
+.loja-overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:30px;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.3),
+        transparent
+    );
+    color:#fff;
+}
+
+.loja-overlay h3{
+    font-size:2rem;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.loja-overlay p{
+    font-size:1rem;
+    opacity:.9;
+}
+@media(max-width:768px){
+    .loja-img{
+        height:300px;
+    }
+
+    .loja-overlay{
+        padding:20px;
+    }
+
+    .loja-overlay h3{
+        font-size:1.4rem;
+    }
+
+    .loja-overlay p{
+        font-size:.85rem;
+    }
+}
+
+.header-actions{display:flex;align-items:center;gap:10px;margin-left:12px}
+.btn-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:var(--transition);position:relative;background:rgba(255,255,255,.1)}
+.btn-icon:hover{background:rgba(255,255,255,.22)}
+.profile-actions{position:relative;display:flex;align-items:center}
+.btn-profile{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.25);border-radius:50px;padding:10px 14px;font-size:.88rem;font-weight:700;transition:var(--transition);cursor:pointer}
+.btn-profile:hover{background:rgba(255,255,255,.24)}
+.profile-menu{position:absolute;right:0;top:calc(100% + 12px);width:220px;background:#fff;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.18);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:20}
+.profile-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+.profile-menu button{width:100%;padding:12px 16px;text-align:left;background:none;border:none;border-bottom:1px solid rgba(235,235,235,1);font-size:.88rem;font-weight:600;color:#1A1A2E;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .2s}
+.profile-menu button:last-child{border-bottom:none}
+.profile-menu button:hover{background:rgba(245,245,245,1)}
+.profile-menu i{width:18px;text-align:center;font-size:1rem;color:var(--blue-mid)}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--yellow);color:var(--blue-dark);font-size:.6rem;font-weight:800;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.search-bar{position:relative;display:flex;align-items:center}
+.search-bar input{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:24px;padding:8px 16px 8px 38px;color:#fff;font-family:inherit;font-size:.84rem;outline:none;width:200px;transition:var(--transition)}
+.search-bar input::placeholder{color:rgba(255,255,255,.5)}
+.search-bar input:focus{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);width:260px}
+.search-bar i{position:absolute;left:13px;color:rgba(255,255,255,.6);font-size:.84rem;pointer-events:none}
+#search-results{position:absolute;top:46px;left:0;right:0;background:var(--white);border-radius:12px;box-shadow:var(--shadow-lg);overflow:hidden;display:none;z-index:700}
+.search-result-item{padding:11px 15px;font-size:.86rem;cursor:pointer;border-bottom:1px solid var(--gray-mid);color:var(--text-dark);transition:var(--transition)}
+.search-result-item:hover{background:var(--gray-light)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:var(--transition)}
+
+/* MOBILE MENU */
+#mobile-menu{display:none;flex-direction:column;background:var(--blue-dark);max-height:80vh;overflow-y:auto}
+#mobile-menu.open{display:flex}
+.mob-section{border-bottom:1px solid rgba(255,255,255,.08)}
+.mob-section-title{color:var(--yellow);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:12px 20px 6px}
+.mob-section a{color:rgba(255,255,255,.85);padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;display:flex;align-items:center;gap:8px}
+.mob-section a i{font-size:.85rem;color:var(--yellow);width:16px}
+.mob-section a:hover{color:#fff;background:rgba(255,255,255,.06)}
+
+/* HERO */
+#hero{background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-mid) 60%,#1976D2 100%);min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:72px 24px}
+.hero-bg-shape{position:absolute;border-radius:50%;opacity:.07;background:#fff}
+.hero-bg-shape.s1{width:600px;height:600px;right:-200px;top:-200px}
+.hero-bg-shape.s2{width:400px;height:400px;left:-150px;bottom:-150px}
+.hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:1}
+.hero-content{color:#fff}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,193,7,.18);border:1.5px solid rgba(255,193,7,.4);color:var(--yellow);padding:6px 16px;border-radius:24px;font-size:.82rem;font-weight:600;margin-bottom:20px;animation:fadeUp .7s .1s both}
+.hero-title{font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.15;margin-bottom:16px;animation:fadeUp .7s .2s both}
+.hero-title span{color:var(--yellow)}
+.hero-sub{font-size:1rem;opacity:.85;line-height:1.7;margin-bottom:30px;animation:fadeUp .7s .3s both}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .7s .4s both}
+.btn-primary{background:var(--yellow);color:var(--blue-dark);padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;transition:var(--transition);display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(255,193,7,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,193,7,.5)}
+.btn-outline{border:2px solid rgba(255,255,255,.7);color:#fff;padding:13px 28px;border-radius:50px;font-weight:600;font-size:.95rem;transition:var(--transition);display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.hero-image-wrap{animation:fadeUp .9s .3s both}
+.hero-image{border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.hero-image img{width:100%;height:400px;object-fit:cover}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;animation:fadeUp .7s .5s both}
+.hero-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px;text-align:center;backdrop-filter:blur(8px)}
+.hero-stat strong{display:block;font-size:1.5rem;font-weight:800;color:var(--yellow)}
+.hero-stat span{font-size:.75rem;opacity:.8}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+section{padding:72px 24px}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:48px}
+.section-tag{display:inline-block;background:rgba(13,71,161,.1);color:var(--blue-mid);padding:5px 16px;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+[data-theme="dark"] .section-tag{background:rgba(21,101,192,.25);color:#90CAF9}
+.section-header h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:10px}
+.section-header p{color:var(--text-body);font-size:1rem;max-width:540px;margin:0 auto;line-height:1.7}
+.section-header h2 span{color:var(--blue-mid)}
+
+/* BRANDS */
+#brands{background:var(--gray-light);padding:28px 24px;border-bottom:1px solid var(--gray-mid)}
+.brands-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:40px;overflow-x:auto;padding-bottom:4px}
+.brand-pill{display:flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--gray-mid);border-radius:50px;padding:9px 20px;white-space:nowrap;font-weight:700;font-size:.88rem;color:var(--text-dark);flex-shrink:0;transition:var(--transition)}
+.brand-pill:hover{border-color:var(--blue-mid);color:var(--blue-mid);box-shadow:var(--shadow)}
+.brand-pill i{font-size:1rem;color:var(--yellow)}
+.brands-label{font-size:.78rem;font-weight:600;color:var(--text-body);white-space:nowrap}
+
+/* DEPARTAMENTOS */
+#departamentos{background:var(--white);padding:56px 24px}
+.dept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dept-card{background:var(--gray-light);border-radius:16px;padding:22px 18px;text-align:center;cursor:pointer;transition:var(--transition);border:2px solid transparent;position:relative;overflow:hidden}
+.dept-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid));opacity:0;transition:var(--transition);z-index:0}
+.dept-card:hover{border-color:var(--blue-mid);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.dept-card:hover::before{opacity:.06}
+.dept-card:hover .dept-icon{background:var(--blue-dark);color:var(--yellow)}
+.dept-icon{width:56px;height:56px;border-radius:16px;background:rgba(13,71,161,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--blue-dark);margin:0 auto 14px;transition:var(--transition);position:relative;z-index:1}
+.dept-card h4{font-size:.9rem;font-weight:700;margin-bottom:4px;position:relative;z-index:1}
+.dept-card span{font-size:.75rem;color:var(--text-body);position:relative;z-index:1}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;justify-content:center}
+.filter-btn{background:var(--gray-light);color:var(--text-body);padding:8px 18px;border-radius:50px;font-size:.84rem;font-weight:600;transition:var(--transition);border:1.5px solid var(--gray-mid)}
+.filter-btn:hover,.filter-btn.active{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
+
+/* PRODUCTS */
+#produtos{background:var(--white)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:24px}
+.product-card{background:var(--white);border-radius:var(--radius);border:1.5px solid var(--gray-mid);overflow:hidden;transition:var(--transition);position:relative;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--blue-mid)}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--yellow);color:var(--blue-dark);font-size:.68rem;font-weight:800;padding:4px 9px;border-radius:50px;z-index:2;text-transform:uppercase}
+.product-badge.new{background:#4CAF50;color:#fff}
+.product-img{width:100%;height:190px;background:linear-gradient(135deg,#e3f0ff,#b8d4ff);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.product-card:hover .product-img img{transform:scale(1.07)}
+.product-info{padding:16px}
+.product-category{font-size:.7rem;font-weight:700;color:var(--blue-mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.product-name{font-size:.95rem;font-weight:700;color:var(--text-dark);margin-bottom:6px;line-height:1.4}
+.product-desc{font-size:.78rem;color:var(--text-body);line-height:1.6;margin-bottom:12px}
+.product-price-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.product-price{font-size:1.35rem;font-weight:800;color:var(--blue-dark)}
+[data-theme="dark"] .product-price{color:#90CAF9}
+.product-price-old{font-size:.8rem;color:var(--text-body);text-decoration:line-through}
+.installment{font-size:.73rem;color:#2E7D32;font-weight:600;margin-bottom:10px}
+.btn-cart{width:100%;background:var(--blue-dark);color:#fff;padding:10px;border-radius:10px;font-weight:600;font-size:.86rem;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-cart:hover{background:var(--blue-mid)}
+.btn-cart:active{transform:scale(.97)}
+
+/* CEP MODAL */
+.cep-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;visibility:hidden;transition:var(--transition)}
+.cep-modal-overlay.open{opacity:1;visibility:visible}
+.cep-modal{background:var(--white);border-radius:20px;padding:32px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.95);transition:transform .3s}
+.cep-modal-overlay.open .cep-modal{transform:scale(1)}
+.cep-modal h3{font-size:1.15rem;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.cep-modal p{font-size:.86rem;color:var(--text-body);margin-bottom:20px;line-height:1.6}
+.cep-input-row{display:flex;gap:10px;margin-bottom:14px}
+.cep-input-row input{flex:1;border:1.5px solid var(--gray-mid);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:.92rem;color:var(--text-dark);outline:none;background:var(--white);transition:var(--transition)}
+.cep-input-row input:focus{border-color:var(--blue-mid);box-shadow:0 0 0 3px rgba(21,101,192,.1)}
+.btn-calc-frete{background:var(--blue-dark);color:#fff;padding:12px 18px;border-radius:10px;font-weight:700;font-size:.86rem;white-space:nowrap;transition:var(--transition)}
+.btn-calc-frete:hover{background:var(--blue-mid)}
+.frete-result{font-size:.85rem;border-radius:10px;padding:10px 14px;margin-bottom:16px;display:none}
+.frete-result.show{display:block}
+.frete-result.ok{background:#E8F5E9;color:#1B5E20;border:1px solid #A5D6A7}
+.frete-result.err{background:#FFEBEE;color:#B71C1C;border:1px solid #FFCDD2}
+.payment-section{background:var(--gray-light);border-radius:12px;padding:14px;margin-bottom:18px}
+.payment-section h4{font-size:.82rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.payment-icons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.pay-icon{background:var(--white);border:1.5px solid var(--gray-mid);border-radius:8px;padding:6px 12px;font-size:.74rem;font-weight:600;color:var(--text-dark);display:flex;align-items:center;gap:5px}
+.pay-icon i{color:var(--blue-mid)}
+.installment-info{font-size:.75rem;color:var(--text-body);line-height:1.5}
+.cep-modal-btns{display:flex;gap:10px}
+.btn-confirmar{flex:1;background:var(--yellow);color:var(--blue-dark);padding:12px;border-radius:10px;font-weight:700;font-size:.92rem;transition:var(--transition)}
+.btn-confirmar:hover{background:#FFD54F}
+.btn-cancelar{padding:12px 18px;border-radius:10px;font-weight:600;font-size:.88rem;color:var(--text-body);background:var(--gray-light);transition:var(--transition)}
+.btn-cancelar:hover{background:var(--gray-mid)}
+.skip-cep{display:block;text-align:center;font-size:.78rem;color:var(--blue-mid);margin-top:12px;cursor:pointer;text-decoration:underline}
+
+/* PROMOÇÕES */
+#promocoes{background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid));padding:72px 24px}
+#promocoes .section-tag{background:rgba(255,193,7,.2);color:var(--yellow)}
+#promocoes .section-header h2{color:#fff}
+#promocoes .section-header p{color:rgba(255,255,255,.8)}
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+.promo-card{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:26px;backdrop-filter:blur(10px);transition:var(--transition);position:relative;overflow:hidden}
+.promo-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,193,7,.12)}
+.promo-card:hover{background:rgba(255,255,255,.16);transform:translateY(-4px)}
+.promo-discount{display:inline-block;background:var(--yellow);color:var(--blue-dark);font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:50px;margin-bottom:12px;text-transform:uppercase}
+.promo-card h3{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.promo-card p{color:rgba(255,255,255,.75);font-size:.85rem;line-height:1.6;margin-bottom:16px}
+.promo-price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+.promo-price{color:var(--yellow);font-size:1.7rem;font-weight:900}
+.promo-price-old{color:rgba(255,255,255,.5);font-size:.88rem;text-decoration:line-through}
+.btn-promo{background:var(--yellow);color:var(--blue-dark);padding:10px 20px;border-radius:50px;font-weight:700;font-size:.85rem;transition:var(--transition);display:inline-flex;align-items:center;gap:8px}
+.btn-promo:hover{background:#FFD54F;transform:translateY(-2px)}
+.promo-countdown{margin-top:14px;display:flex;gap:8px}
+.countdown-box{background:rgba(0,0,0,.25);border-radius:8px;padding:7px 10px;text-align:center;min-width:50px}
+.countdown-box strong{display:block;color:#fff;font-size:1.2rem;font-weight:800;line-height:1}
+.countdown-box span{color:rgba(255,255,255,.6);font-size:.6rem;text-transform:uppercase}
+
+/* TENDÊNCIAS 2026 */
+#tendencias{background:var(--gray-light);padding:72px 24px}
+.trend-intro{max-width:700px;margin:0 auto 48px;text-align:center}
+.trend-paleta{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.color-swatch{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer}
+.swatch-circle{width:64px;height:64px;border-radius:50%;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:transform .2s,box-shadow .2s;border:3px solid var(--white)}
+.color-swatch:hover .swatch-circle{transform:scale(1.1);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.swatch-name{font-size:.72rem;font-weight:600;color:var(--text-dark);text-align:center}
+.swatch-code{font-size:.65rem;color:var(--text-body)}
+.trend-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.trend-room{border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer;box-shadow:var(--shadow)}
+.trend-room img{width:100%;height:240px;object-fit:cover;transition:transform .6s ease;filter:brightness(.95)}
+.trend-room:hover img{transform:scale(1.05);filter:brightness(1)}
+.trend-room-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);padding:20px 16px 14px;color:#fff}
+.trend-room-label h4{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.trend-room-label span{font-size:.75rem;opacity:.85;display:flex;align-items:center;gap:6px}
+.trend-color-dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:1.5px solid rgba(255,255,255,.6)}
+
+/* SOBRE */
+#sobre{background:var(--white)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.sobre-image{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);position:relative}
+.sobre-image img{width:100%;height:400px;object-fit:cover}
+.sobre-image-badge{position:absolute;bottom:22px;right:22px;background:var(--blue-dark);color:#fff;border-radius:14px;padding:12px 18px;text-align:center;box-shadow:var(--shadow)}
+.sobre-image-badge strong{display:block;font-size:1.7rem;font-weight:900;color:var(--yellow)}
+.sobre-image-badge span{font-size:.75rem;opacity:.85}
+.sobre-content h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;margin-bottom:14px;line-height:1.25}
+.sobre-content h2 span{color:var(--blue-mid)}
+.sobre-content p{color:var(--text-body);line-height:1.8;margin-bottom:20px;font-size:.95rem}
+.sobre-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.feature-item{display:flex;align-items:flex-start;gap:11px;padding:14px;background:var(--gray-light);border-radius:12px;border-left:4px solid var(--blue-mid)}
+.feature-icon{width:38px;height:38px;background:var(--blue-dark);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--yellow);font-size:.95rem;flex-shrink:0}
+.feature-text strong{display:block;font-size:.86rem;font-weight:700;margin-bottom:2px}
+.feature-text span{font-size:.75rem;color:var(--text-body)}
+
+/* AVALIAÇÕES */
+#avaliacoes{background:var(--gray-light)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.review-card{background:var(--white);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);border:1.5px solid var(--gray-mid);transition:var(--transition)}
+.review-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.stars{color:var(--yellow);font-size:1rem;margin-bottom:14px}
+.review-text{color:var(--text-body);font-size:.88rem;line-height:1.7;margin-bottom:18px;font-style:italic}
+.reviewer{display:flex;align-items:center;gap:11px}
+.reviewer-avatar{width:42px;height:42px;border-radius:50%;background:var(--blue-dark);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.95rem}
+.reviewer-name{font-weight:700;font-size:.88rem}
+.reviewer-meta{font-size:.72rem;color:var(--text-body)}
+
+/* CONTATO */
+#contato{background:var(--white)}
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.contato-info h3{font-size:1.4rem;font-weight:800;margin-bottom:22px}
+.contact-items{display:flex;flex-direction:column;gap:18px}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--gray-light);border-radius:14px;transition:var(--transition)}
+.contact-item:hover{box-shadow:var(--shadow);transform:translateX(4px)}
+.contact-icon{width:46px;height:46px;background:var(--blue-dark);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--yellow);font-size:1.1rem;flex-shrink:0}
+.contact-detail strong{display:block;font-size:.88rem;font-weight:700;margin-bottom:2px}
+.contact-detail span{font-size:.85rem;color:var(--text-body)}
+.contact-detail a{color:var(--blue-mid);font-weight:600}
+.horario{margin-top:24px;background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid));border-radius:16px;padding:22px;color:#fff}
+.horario h4{font-size:.95rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.horario-item{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.85rem}
+.horario-item:last-child{border:none}
+.horario-item span:last-child{font-weight:600;color:var(--yellow)}
+.mapa-placeholder{background:linear-gradient(135deg,#e3f0ff,#b8d4ff);border-radius:16px;height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--blue-dark);margin-top:22px;border:2px solid var(--gray-mid)}
+.mapa-placeholder i{font-size:2.5rem;opacity:.5}
+.mapa-placeholder span{font-weight:600;opacity:.7;font-size:.88rem;text-align:center;padding:0 20px}
+.btn-maps{margin-top:10px;background:var(--blue-dark);color:#fff;padding:9px 20px;border-radius:50px;font-weight:600;font-size:.84rem;display:inline-flex;align-items:center;gap:7px;transition:var(--transition)}
+.btn-maps:hover{background:var(--blue-mid)}
+.contato-form{background:var(--gray-light);border-radius:20px;padding:28px}
+.contato-form h3{font-size:1.2rem;font-weight:800;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.83rem;font-weight:600;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--white);border:1.5px solid var(--gray-mid);border-radius:10px;padding:11px 14px;font-family:inherit;font-size:.88rem;color:var(--text-dark);outline:none;transition:var(--transition)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue-mid);box-shadow:0 0 0 3px rgba(21,101,192,.1)}
+.form-group textarea{resize:vertical;min-height:100px}
+.btn-submit{width:100%;background:var(--blue-dark);color:#fff;padding:13px;border-radius:10px;font-weight:700;font-size:.95rem;transition:var(--transition)}
+.btn-submit:hover{background:var(--blue-mid);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:linear-gradient(180deg,#0A2568 0%,#071A4A 100%);color:#fff;padding:56px 24px 26px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.footer-brand .logo{font-size:1.2rem;margin-bottom:14px}
+.footer-brand p{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.7;margin-bottom:18px}
+.social-links{display:flex;gap:10px}
+.social-link{width:38px;height:38px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:var(--transition)}
+.social-link:hover{background:var(--yellow);color:var(--blue-dark)}
+.footer-col h4{font-size:.9rem;font-weight:700;margin-bottom:16px;color:var(--yellow)}
+.footer-col ul{display:flex;flex-direction:column;gap:9px}
+.footer-col ul a{color:rgba(255,255,255,.6);font-size:.84rem;transition:var(--transition)}
+.footer-col ul a:hover{color:#fff;padding-left:4px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.45)}
+.footer-badges{display:flex;gap:8px}
+.footer-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:4px 10px;font-size:.7rem;color:rgba(255,255,255,.55)}
+
+/* CART DRAWER */
+#cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:800;opacity:0;visibility:hidden;transition:var(--transition)}
+#cart-overlay.open{opacity:1;visibility:visible}
+#cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:var(--white);z-index:801;box-shadow:-8px 0 40px rgba(0,0,0,.2);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+#cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--gray-mid)}
+.cart-header h3{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:9px}
+.cart-close{width:34px;height:34px;border-radius:50%;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:var(--transition)}
+.cart-close:hover{background:var(--gray-mid)}
+.cart-items{flex:1;overflow-y:auto;padding:14px 22px}
+.cart-empty{text-align:center;padding:52px 20px;color:var(--text-body)}
+.cart-empty i{font-size:2.8rem;opacity:.3;margin-bottom:14px;display:block;color:var(--blue-mid)}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--gray-mid);align-items:flex-start}
+.cart-item:last-child{border:none}
+.cart-item-img{width:60px;height:60px;background:var(--gray-light);border-radius:10px;overflow:hidden;flex-shrink:0}
+.cart-item-img img{width:100%;height:100%;object-fit:cover}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:.86rem;font-weight:700;margin-bottom:3px}
+.cart-item-price{font-size:.82rem;color:var(--blue-mid);font-weight:600}
+.cart-item-controls{display:flex;align-items:center;gap:9px;margin-top:7px}
+.qty-btn{width:26px;height:26px;border-radius:8px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:var(--transition);font-weight:700}
+.qty-btn:hover{background:var(--blue-dark);color:#fff}
+.qty-val{font-size:.86rem;font-weight:700;min-width:22px;text-align:center}
+.cart-item-remove{margin-left:auto;color:var(--text-body);font-size:.82rem;transition:var(--transition);padding:4px}
+.cart-item-remove:hover{color:#e53935}
+.cart-footer{padding:18px 22px;border-top:1px solid var(--gray-mid)}
+.cart-subtotal{display:flex;justify-content:space-between;margin-bottom:7px;font-size:.86rem;color:var(--text-body)}
+.cart-total{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:800;margin-bottom:8px;color:var(--text-dark)}
+.cart-total span:last-child{color:var(--blue-dark)}
+.cart-installment{font-size:.75rem;color:#2E7D32;font-weight:600;margin-bottom:16px;text-align:right}
+.btn-checkout{width:100%;background:var(--yellow);color:var(--blue-dark);padding:13px;border-radius:12px;font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--transition)}
+.btn-checkout:hover{background:#FFD54F;transform:translateY(-2px)}
+.btn-checkout-wa{width:100%;background:#25D366;color:#fff;padding:11px;border-radius:12px;font-weight:600;font-size:.86rem;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;transition:var(--transition)}
+.btn-checkout-wa:hover{background:#22C55E}
+
+/* TOAST */
+#toast-container{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:900;display:flex;flex-direction:column;gap:9px;align-items:center;pointer-events:none}
+.toast{background:var(--blue-dark);color:#fff;padding:11px 22px;border-radius:50px;font-size:.86rem;font-weight:600;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:9px;animation:toastIn .3s ease,toastOut .3s ease 2.5s forwards;border-left:4px solid var(--yellow);pointer-events:all}
+.toast.success{background:#1B5E20}
+.toast.error{background:#B71C1C}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(10px)}}
+
+/* BACK TO TOP */
+#back-top{position:fixed;bottom:26px;right:26px;width:46px;height:46px;background:var(--blue-dark);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:var(--shadow-lg);z-index:400;opacity:0;visibility:hidden;transition:var(--transition);transform:translateY(10px)}
+#back-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+#back-top:hover{background:var(--blue-mid);transform:translateY(-3px)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+
+@media(max-width:1280px){
+  .mega-drop{min-width:580px}
+  .dept-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+@media(max-width:1024px){
+  .search-bar input{width:150px}
+  .search-bar input:focus{width:190px}
+  #hero{min-height:auto;padding:64px 24px 48px}
+  .hero-inner{grid-template-columns:1fr;text-align:center;gap:0}
+  .hero-buttons{justify-content:center}
+  .hero-image-wrap{display:none}
+  .hero-stats{max-width:520px;margin:24px auto 0}
+  .hero-badge{margin:0 auto 18px}
+  .sobre-grid{grid-template-columns:1fr;gap:36px}
+  .contato-grid{grid-template-columns:1fr;gap:36px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand{grid-column:1/3}
+  .dept-grid{grid-template-columns:repeat(4,1fr);gap:14px}
+  .trend-rooms{grid-template-columns:1fr 1fr}
+  .mega-drop{min-width:480px}
+  .mega-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:900px){
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .dept-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+@media(max-width:768px){
+  /* HEADER */
+  .main-nav{display:none}
+  .search-bar{display:none}
+  .hamburger{display:flex}
+  .header-top{height:60px;padding:0 14px;gap:10px}
+  .logo{font-size:1.05rem}
+  #badge-24h{top:110px;font-size:.68rem;padding:8px 10px 8px 9px}
+  #badge-24h span{font-size:.64rem}
+
+  /* HERO */
+  #hero{padding:52px 14px 40px}
+  .hero-title{font-size:1.75rem}
+  .hero-sub{font-size:.92rem}
+  .hero-stats{grid-template-columns:1fr 1fr;max-width:100%}
+  .hero-stat strong{font-size:1.3rem}
+  .hero-buttons{flex-direction:column;align-items:center;gap:10px}
+  .btn-primary,.btn-outline{width:100%;max-width:300px;justify-content:center}
+
+  section{padding:48px 14px}
+  .section-header{margin-bottom:32px}
+
+  /* DEPT */
+  .dept-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .dept-card{padding:18px 14px}
+  .dept-icon{width:48px;height:48px;font-size:1.2rem}
+  .dept-card h4{font-size:.82rem}
+  .dept-card span{font-size:.68rem}
+
+  /* PRODUCTS */
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .product-img{height:155px}
+  .product-info{padding:12px}
+  .product-name{font-size:.88rem}
+  .product-price{font-size:1.15rem}
+
+  /* TREND */
+  .trend-rooms{grid-template-columns:1fr}
+  .trend-room img{height:200px}
+
+  /* FOOTER */
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+  .footer-brand{grid-column:auto}
+  footer{padding:44px 14px 22px}
+  .footer-bottom{flex-direction:column;text-align:center}
+
+  /* SOBRE */
+  .sobre-grid{gap:24px}
+  .sobre-image img{height:250px}
+  .sobre-features{grid-template-columns:1fr}
+
+  /* CART */
+  #cart-drawer{width:100vw}
+
+  /* PROMO */
+  .promo-grid{grid-template-columns:1fr}
+
+  /* REVIEWS */
+  .reviews-grid{grid-template-columns:1fr}
+
+  /* BACK TOP */
+  #back-top{bottom:18px;right:14px;width:40px;height:40px;font-size:.9rem}
+}
+
+@media(max-width:480px){
+  .logo{font-size:.92rem}
+  #hero{padding:42px 12px 36px}
+  .hero-title{font-size:1.48rem}
+  .hero-sub{font-size:.84rem}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:9px}
+  .hero-stat{padding:11px 7px}
+  .hero-stat strong{font-size:1.15rem}
+  .hero-badge{font-size:.72rem;padding:5px 11px}
+  section{padding:38px 12px}
+  .section-header h2{font-size:1.35rem}
+  .dept-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .products-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .product-img{height:130px}
+  .product-name{font-size:.8rem}
+  .product-desc{display:none}
+  .product-price{font-size:1.05rem}
+  .product-price-old{display:none}
+  .installment{display:none}
+  .btn-cart{font-size:.76rem;padding:8px;gap:4px}
+  .trend-paleta{gap:10px}
+  .swatch-circle{width:52px;height:52px}
+  footer{padding:32px 12px 18px}
+  .footer-bottom p{font-size:.7rem}
+  .cep-modal{padding:22px}
+  .promo-card{padding:20px}
+  .promo-price{font-size:1.45rem}
+  #toast-container{bottom:14px;left:12px;right:12px;transform:none}
+  .toast{font-size:.78rem;padding:9px 14px;border-radius:12px}
+}
+
+@media(max-width:360px){
+  .logo{font-size:.82rem}
+  .btn-icon{width:32px;height:32px;font-size:.86rem}
+  #hero{padding:36px 10px 30px}
+  .hero-title{font-size:1.28rem}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:7px}
+  section{padding:30px 10px}
+  .dept-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .products-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .product-img{height:110px}
+  .product-price{font-size:.96rem}
+  .btn-cart{font-size:.7rem;padding:7px}
+  .footer-grid{gap:16px}
+}
+
+@media(hover:none){
+  .product-card:hover{transform:none;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+  .btn-primary:hover,.btn-outline:hover,.btn-cart:hover{transform:none}
+  .mega-drop{display:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">TINTAS<span style="color:var(--yellow)"> SUPER CASA</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- BADGE 24H -->
+<div id="badge-24h" title="Loja aberta 24 horas">
+  <div class="pulse-dot"></div>
+  <span>ABERTO<br>24h</span>
+</div>
+
+<!-- PROMO BANNER -->
+<div id="promo-banner">
+  <span>🎨</span>
+  <span><strong>PROMOÇÃO RELÂMPAGO:</strong> Tinta Premium 18L com 15% OFF + frete grátis para Diadema!</span>
+  <span>🎨</span>
+  <button id="close-banner"><i class="fas fa-times"></i></button>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <a href="#" class="logo">TINTAS <span>SUPER CASA</span></a>
+    <nav class="main-nav">
+
+      <!-- DEPARTAMENTOS MEGA -->
+      <div class="nav-item">
+        <a class="nav-link" href="#departamentos">Departamentos <i class="fas fa-chevron-down"></i></a>
+        <div class="mega-drop">
+          <div class="mega-grid">
+            <div class="mega-col">
+              <h5>Tintas</h5>
+              <ul>
+                <li><a href="#" onclick="filterDept('acrilica')"><i class="fas fa-paint-roller"></i>Tintas Acrílicas</a></li>
+                <li><a href="#" onclick="filterDept('emborrachada')"><i class="fas fa-cloud-rain"></i>Tintas Emborrachadas</a></li>
+                <li><a href="#" onclick="filterDept('imobiliaria')"><i class="fas fa-home"></i>Tintas Imobiliárias</a></li>
+                <li><a href="#" onclick="filterDept('automotiva')"><i class="fas fa-car"></i>Tintas Automotivas</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h5>Acabamentos</h5>
+              <ul>
+                <li><a href="#" onclick="filterDept('textura')"><i class="fas fa-border-style"></i>Texturas</a></li>
+                <li><a href="#" onclick="filterDept('impermeabilizante')"><i class="fas fa-tint"></i>Impermeabilizantes</a></li>
+                <li><a href="#" onclick="filterDept('verniz')"><i class="fas fa-flask"></i>Vernizes</a></li>
+                <li><a href="#" onclick="filterDept('selante')"><i class="fas fa-shield-alt"></i>Selantes</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h5>Preparo</h5>
+              <ul>
+                <li><a href="#" onclick="filterDept('solvente')"><i class="fas fa-vial"></i>Solventes</a></li>
+                <li><a href="#" onclick="filterDept('imobiliaria')"><i class="fas fa-layer-group"></i>Massas Corridas</a></li>
+                <li><a href="#" onclick="filterDept('imobiliaria')"><i class="fas fa-spray-can"></i>Seladores</a></li>
+                <li><a href="#" onclick="filterDept('imobiliaria')"><i class="fas fa-grip-lines"></i>Fundos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h5>Ferramentaria</h5>
+              <ul>
+                <li><a href="#" onclick="filterDept('acessorio')"><i class="fas fa-paint-brush"></i>Pincéis e Rolos</a></li>
+                <li><a href="#" onclick="filterDept('acessorio')"><i class="fas fa-tape"></i>Fitas e Lixas</a></li>
+                <li><a href="#" onclick="filterDept('acessorio')"><i class="fas fa-toolbox"></i>Kits Completos</a></li>
+                <li><a href="#" onclick="filterDept('acessorio')"><i class="fas fa-fill-drip"></i>Bandejas e Grades</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="nav-link ofertas-link" href="#promocoes"><i class="fas fa-bolt"></i> Ofertas</a>
+      <a class="nav-link" href="#tendencias"><i class="fas fa-fire" style="color:var(--yellow)"></i> Tendências 2026</a>
+
+      <!-- MARCAS -->
+      <div class="nav-item">
+        <a class="nav-link" href="#brands">Marcas <i class="fas fa-chevron-down"></i></a>
+        <div class="simple-drop">
+          <a href="#">Suvinil</a><a href="#">Coral</a><a href="#">Anjo</a>
+          <a href="#">Atlas</a><a href="#">Eucatex</a><a href="#">Maza</a>
+          <a href="#">Tigre</a><a href="#">Condor</a><a href="#">Baumgart</a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="#sobre">Sobre</a>
+      <a class="nav-link" href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" placeholder="Buscar produto...">
+        <div id="search-results"></div>
+      </div>
+      <button class="btn-icon" id="dark-toggle" title="Modo escuro">
+        <i class="fas fa-moon" id="dark-icon"></i>
+      </button>
+      <button class="btn-icon" id="cart-btn" title="Carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu">
+    <div class="mob-section">
+      <div class="mob-section-title">Tintas</div>
+      <a href="#" onclick="filterDept('acrilica');closeMob()"><i class="fas fa-paint-roller"></i>Tintas Acrílicas</a>
+      <a href="#" onclick="filterDept('emborrachada');closeMob()"><i class="fas fa-cloud-rain"></i>Tintas Emborrachadas</a>
+      <a href="#" onclick="filterDept('imobiliaria');closeMob()"><i class="fas fa-home"></i>Tintas Imobiliárias</a>
+      <a href="#" onclick="filterDept('automotiva');closeMob()"><i class="fas fa-car"></i>Tintas Automotivas</a>
+    </div>
+    <div class="mob-section">
+      <div class="mob-section-title">Acabamentos & Preparo</div>
+      <a href="#" onclick="filterDept('textura');closeMob()"><i class="fas fa-border-style"></i>Texturas</a>
+      <a href="#" onclick="filterDept('impermeabilizante');closeMob()"><i class="fas fa-tint"></i>Impermeabilizantes</a>
+      <a href="#" onclick="filterDept('verniz');closeMob()"><i class="fas fa-flask"></i>Vernizes</a>
+      <a href="#" onclick="filterDept('selante');closeMob()"><i class="fas fa-shield-alt"></i>Selantes</a>
+      <a href="#" onclick="filterDept('solvente');closeMob()"><i class="fas fa-vial"></i>Solventes</a>
+      <a href="#" onclick="filterDept('acessorio');closeMob()"><i class="fas fa-toolbox"></i>Ferramentaria</a>
+    </div>
+    <div class="mob-section">
+      <div class="mob-section-title">Menu</div>
+      <a href="#promocoes" onclick="closeMob()"><i class="fas fa-bolt"></i>Ofertas</a>
+      <a href="#tendencias" onclick="closeMob()"><i class="fas fa-fire"></i>Tendências 2026</a>
+      <a href="#sobre" onclick="closeMob()"><i class="fas fa-info-circle"></i>Sobre</a>
+      <a href="#contato" onclick="closeMob()"><i class="fas fa-phone"></i>Contato</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-shape s1"></div>
+  <div class="hero-bg-shape s2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-star"></i> #1 em Diadema – SP</div>
+      <h1 class="hero-title">Transforme Seu Ambiente com as <span>Melhores Tintas</span></h1>
+      <p class="hero-sub">Qualidade, economia e atendimento especializado em Diadema.<br>Suvinil, Coral, Anjo e muito mais. Abertos 24 horas!</p>
+      <div class="hero-buttons">
+        <a href="#produtos" class="btn-primary"><i class="fas fa-palette"></i> Ver Produtos</a>
+        <a href="https://wa.me/5511966921863" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>+10.000</strong><span>Clientes Atendidos</span></div>
+        <div class="hero-stat"><strong>+2.000</strong><span>Produtos</span></div>
+        <div class="hero-stat"><strong>4+</strong><span>Anos no Mercado</span></div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&q=80" alt="Loja de Tintas Super Casa">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<div id="brands">
+  <div class="brands-inner">
+    <span class="brands-label">Trabalhamos com:</span>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Suvinil</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Coral</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Anjo</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Atlas</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Eucatex</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Maza</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Tigre</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Condor</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Baumgart</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Salvabras</div>
+    <div class="brand-pill"><i class="fas fa-certificate"></i> Norton</div>
+  </div>
+</div>
+
+<!-- DEPARTAMENTOS -->
+<section id="departamentos">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Nossa Loja </div> <div class="loja-container reveal">
+    <img src="loja.jpeg" alt="Loja Tintas Super Casa" class="loja-img">
+
+    <div class="loja-overlay">
+        <h3>Tintas Super Casa</h3>
+        <p>Loja física em Diadema • Atendimento especializado • Atendimento  24h</p>
+    </div>
+</div>
+</div>
+      <h2>Departamentos</h2>
+      <p>Tudo para sua pintura em um só lugar — toque para filtrar os produtos.</p>
+    </div>
+    <div class="dept-grid reveal">
+      <div class="dept-card" onclick="filterDept('acrilica')">
+        <div class="dept-icon"><i class="fas fa-paint-roller"></i></div>
+        <h4>Tintas Acrílicas</h4><span>Internas e externas</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('textura')">
+        <div class="dept-icon"><i class="fas fa-border-style"></i></div>
+        <h4>Texturas</h4><span>Grafiatos e decorativas</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('impermeabilizante')">
+        <div class="dept-icon"><i class="fas fa-tint"></i></div>
+        <h4>Impermeabilizantes</h4><span>Lajes e fachadas</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('emborrachada')">
+        <div class="dept-icon"><i class="fas fa-cloud-rain"></i></div>
+        <h4>Emborrachadas</h4><span>Alta proteção</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('solvente')">
+        <div class="dept-icon"><i class="fas fa-vial"></i></div>
+        <h4>Solventes</h4><span>Aguarrás, thinner</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('selante')">
+        <div class="dept-icon"><i class="fas fa-shield-alt"></i></div>
+        <h4>Selantes</h4><span>Vedação e proteção</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('acessorio')">
+        <div class="dept-icon"><i class="fas fa-toolbox"></i></div>
+        <h4>Ferramentaria</h4><span>Pincéis, rolos, kits</span>
+      </div>
+      <div class="dept-card" onclick="filterDept('verniz')">
+        <div class="dept-icon"><i class="fas fa-flask"></i></div>
+        <h4>Vernizes</h4><span>Madeiras e metais</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Catálogo</div>
+      <h2>Produtos de <span>Alta Qualidade</span></h2>
+      <p>Do acabamento fino às texturas especiais, temos tudo para sua obra.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="acrilica">Acrílicas</button>
+      <button class="filter-btn" data-filter="emborrachada">Emborrachadas</button>
+      <button class="filter-btn" data-filter="impermeabilizante">Impermeabilizantes</button>
+      <button class="filter-btn" data-filter="textura">Texturas</button>
+      <button class="filter-btn" data-filter="solvente">Solventes</button>
+      <button class="filter-btn" data-filter="selante">Selantes</button>
+      <button class="filter-btn" data-filter="verniz">Vernizes</button>
+      <button class="filter-btn" data-filter="acessorio">Ferramentaria</button>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<!-- PROMOÇÕES -->
+<section id="promocoes">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Ofertas Especiais</div>
+      <h2>Promoções <span style="color:var(--yellow)">Imperdíveis</span></h2>
+      <p>Aproveite nossas ofertas exclusivas por tempo limitado.</p>
+    </div>
+    <div class="promo-grid">
+      <div class="promo-card reveal">
+        <div class="promo-discount">🔥 -20% OFF</div>
+        <h3>Tinta Suvinil Premium 18L</h3>
+        <p>Rendimento superior, cobertura em apenas 2 demãos. Ideal para ambientes internos e externos.</p>
+        <div class="promo-price-row"><span class="promo-price">R$ 349,90</span><span class="promo-price-old">R$ 437,38</span></div>
+        <div class="promo-countdown" id="countdown1"></div><br>
+        <a href="https://wa.me/5511966921863?text=Olá! Quero a promoção da Tinta Suvinil 18L!" target="_blank" class="btn-promo"><i class="fab fa-whatsapp"></i> Aproveitar</a>
+      </div>
+      <div class="promo-card reveal">
+        <div class="promo-discount">⚡ -25% OFF</div>
+        <h3>Kit Completo Pintura</h3>
+        <p>Rolo + bandeja + pincel + fita crepe + lixa. Kit profissional completo para sua reforma.</p>
+        <div class="promo-price-row"><span class="promo-price">R$ 44,90</span><span class="promo-price-old">R$ 59,90</span></div>
+        <div class="promo-countdown" id="countdown2"></div><br>
+        <a href="https://wa.me/5511966921863?text=Olá! Tenho interesse no Kit Completo!" target="_blank" class="btn-promo"><i class="fab fa-whatsapp"></i> Aproveitar</a>
+      </div>
+      <div class="promo-card reveal">
+        <div class="promo-discount">🎁 LEVE 3 PAGUE 2</div>
+        <h3>Massa Corrida PVA 25kg</h3>
+        <p>Prepare a superfície e garanta acabamento liso e perfeito. Compre 3 e pague 2.</p>
+        <div class="promo-price-row"><span class="promo-price">R$ 79,90</span><span class="promo-price-old">R$ 119,85</span></div>
+        <div class="promo-countdown" id="countdown3"></div><br>
+        <a href="https://wa.me/5511966921863?text=Olá! Quero a promoção da Massa Corrida!" target="_blank" class="btn-promo"><i class="fab fa-whatsapp"></i> Aproveitar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TENDÊNCIAS 2026 -->
+<section id="tendencias">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Tendências 2026</div>
+      <h2>Cores em <span>Alta este Ano</span></h2>
+      <p>As paletas mais desejadas pelos designers de interiores para transformar seu lar.</p>
+    </div>
+    <div class="trend-paleta reveal">
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#6B4C3B"></div>
+        <span class="swatch-name">Café</span><span class="swatch-code">#6B4C3B</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#8B6355"></div>
+        <span class="swatch-name">Capuccino</span><span class="swatch-code">#8B6355</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#C4A882"></div>
+        <span class="swatch-name">Bege Quente</span><span class="swatch-code">#C4A882</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#A8B5C0"></div>
+        <span class="swatch-name">Cromo</span><span class="swatch-code">#A8B5C0</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#CFD8DC"></div>
+        <span class="swatch-name">Névoa</span><span class="swatch-code">#CFD8DC</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#7A9E7E"></div>
+        <span class="swatch-name">Sage</span><span class="swatch-code">#7A9E7E</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#E8DDD0"></div>
+        <span class="swatch-name">Areia</span><span class="swatch-code">#E8DDD0</span>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-circle" style="background:#3D3D3D"></div>
+        <span class="swatch-name">Grafite</span><span class="swatch-code">#3D3D3D</span>
+      </div>
+    </div>
+    <div class="trend-rooms reveal">
+      <div class="trend-room">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Sala tom café">
+        <div class="trend-room-label">
+          <h4>Sala em Tom Café</h4>
+          <span><span class="trend-color-dot" style="background:#6B4C3B"></span> Marrom Café + Bege Quente</span>
+        </div>
+      </div>
+      <div class="trend-room">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80" alt="Cromo moderno">
+        <div class="trend-room-label">
+          <h4>Minimalismo Cromo</h4>
+          <span><span class="trend-color-dot" style="background:#A8B5C0"></span> Cinza Cromo + Off-White</span>
+        </div>
+      </div>
+      <div class="trend-room">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Casa moderna">
+        <div class="trend-room-label">
+          <h4>Casa Moderna 2026</h4>
+          <span><span class="trend-color-dot" style="background:#3D3D3D"></span> Grafite + Bege Areia</span>
+        </div>
+      </div>
+      <div class="trend-room">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt="Sala café aconchegante">
+        <div class="trend-room-label">
+          <h4>Aconchego Capuccino</h4>
+          <span><span class="trend-color-dot" style="background:#8B6355"></span> Capuccino + Madeira</span>
+        </div>
+      </div>
+      <div class="trend-room">
+        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80" alt="Sage e natural">
+        <div class="trend-room-label">
+          <h4>Verde Sage Natural</h4>
+          <span><span class="trend-color-dot" style="background:#7A9E7E"></span> Sage + Branco Pérola</span>
+        </div>
+      </div>
+      <div class="trend-room">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Fachada moderna">
+        <div class="trend-room-label">
+          <h4>Fachada Contemporânea</h4>
+          <span><span class="trend-color-dot" style="background:#CFD8DC"></span> Névoa + Concreto</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="https://wa.me/5511966921863?text=Olá! Quero ver as cores tendência 2026 da loja!" target="_blank" class="btn-primary" style="display:inline-flex"><i class="fas fa-palette"></i> Consultar Cores na Loja</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="sobre-image reveal-left">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&q=80" alt="Tintas Super Casa">
+        <div class="sobre-image-badge"><strong>15+</strong><span>Anos no Mercado</span></div>
+      </div>
+      <div class="sobre-content reveal-right">
+        <div class="section-tag" style="text-align:left">Nossa História</div>
+        <h2>A <span>Tintas Super Casa</span> é referência em Diadema</h2>
+        <p>Fundada há mais de 4 anos em Diadema – SP, a Tintas Super Casa nasceu do desejo de oferecer produtos de qualidade premium com preço justo e atendimento próximo ao cliente.</p>
+        <p>Trabalhamos com as melhores marcas — Suvinil, Coral e Anjo — além de serviço de personalização de cores com +3.000 opções disponíveis.</p>
+        <div class="sobre-features">
+          <div class="feature-item"><div class="feature-icon"><i class="fas fa-user-tie"></i></div><div class="feature-text"><strong>Atendimento Especializado</strong><span>Equipe treinada 24h</span></div></div>
+          <div class="feature-item"><div class="feature-icon"><i class="fas fa-palette"></i></div><div class="feature-text"><strong>+3.000 Cores</strong><span>Misturador digital</span></div></div>
+          <div class="feature-item"><div class="feature-icon"><i class="fas fa-truck"></i></div><div class="feature-text"><strong>Entrega no Mesmo Dia</strong><span>Diadema e região</span></div></div>
+          <div class="feature-item"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><div class="feature-text"><strong>Qualidade Garantida</strong><span>NF e garantia em tudo</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Depoimentos</div>
+      <h2>O que nossos clientes <span>dizem</span></h2>
+      <p>Mais de 5.000 clientes satisfeitos em Diadema e região.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal"><div class="stars">★★★★★</div><p class="review-text">"Melhor loja de tintas de Diadema! Atendimento excelente, preço justo e produto chegou no dia prometido."</p><div class="reviewer"><div class="reviewer-avatar">C</div><div><div class="reviewer-name">Carlos Mendes</div><div class="reviewer-meta">Diadema – SP · Pintura residencial</div></div></div></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><p class="review-text">"Preços muito competitivos. O pessoal me ajudou a escolher a tinta ideal para o meu projeto."</p><div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ana Paula Ribeiro</div><div class="reviewer-meta">São Bernardo · Reforma completa</div></div></div></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><p class="review-text">"Pedi às 10h e às 14h já estava na obra. A tinta Suvinil comprada lá é excepcional!"</p><div class="reviewer"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Roberto Costa</div><div class="reviewer-meta">Diadema – SP · Construção civil</div></div></div></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><p class="review-text">"Comprei tinta automotiva e o resultado ficou incrível! Equipe muito bem preparada. Virei cliente fiel!"</p><div class="reviewer"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Marcos Alves</div><div class="reviewer-meta">Diadema – SP · Pintura automotiva</div></div></div></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><p class="review-text">"O grafiato ficou perfeito na fachada. Serviço de personalização de cor sensacional!"</p><div class="reviewer"><div class="reviewer-avatar">F</div><div><div class="reviewer-name">Fernanda Lima</div><div class="reviewer-meta">Diadema – SP · Fachada residencial</div></div></div></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><p class="review-text">"Atendimento personalizado e qualidade dos produtos se destacaram. Preço ótimo também!"</p><div class="reviewer"><div class="reviewer-avatar">J</div><div><div class="reviewer-name">João Baptista</div><div class="reviewer-meta">São Paulo – SP · Projeto comercial</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Fale Conosco</div>
+      <h2>Entre em <span>Contato</span></h2>
+      <p>Estamos prontos para te atender. Escolha o canal de sua preferência!</p>
+    </div>
+    <div class="contato-grid">
+      <div class="contato-info reveal-left">
+        <h3>Informações de Contato</h3>
+        <div class="contact-items">
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-detail"><strong>Endereço</strong><span>Avenida Alda, 1636 – Diadema – SP</span></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><div class="contact-detail"><strong>WhatsApp</strong><a href="https://wa.me/5511966921863" target="_blank">(11) 96692-1863</a></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-detail"><strong>Telefone</strong><a href="tel:1151990484">(11) 5199-0484</a></div></div>
+        </div>
+        <div class="horario">
+          <h4><i class="fas fa-clock"></i> Horário de Atendimento</h4>
+          <div class="horario-item"><span>Segunda a Sexta</span><span>07:30 – 18:00</span></div>
+          <div class="horario-item"><span>Sábado</span><span>07:30 – 13:00</span></div>
+          <div class="horario-item" style="color:rgba(255,255,255,.6)"><span>Domingo</span><span style="color:rgba(255,255,255,.4)">Fechado</span></div>
+          <div class="horario-item" style="border-top:1px dashed rgba(255,255,255,.2);margin-top:8px;padding-top:8px"><span>🟢 Pedidos Online</span><span>24 horas / 7 dias</span></div>
+        </div>
+        <div class="mapa-placeholder">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>Avenida Alda, 1636<br>Diadema – SP</span>
+          <a href="https://maps.google.com/?q=Avenida+Alda+1636+Diadema+SP" target="_blank" class="btn-maps"><i class="fas fa-directions"></i> Como Chegar</a>
+        </div>
+      </div>
+      <div class="contato-form reveal-right">
+        <h3>Envie sua Mensagem</h3>
+        <div class="form-group"><label>Nome *</label><input type="text" id="f-nome" placeholder="Seu nome completo"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="Seu email"></div>
+        <div class="form-group"><label>Assunto</label>
+          <select id="f-assunto">
+            <option>Dúvida sobre produto</option>
+            <option>Orçamento</option>
+            <option>Pedido / Compra</option>
+            <option>Entrega</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Mensagem *</label><textarea id="f-msg" placeholder="Descreva como podemos te ajudar..."></textarea></div>
+        <button class="btn-submit" type="button" onclick="enviarEmail(event)"><i class="fas fa-envelope"></i> Enviar por Email</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">TINTAS <span>SUPER CASA</span></div>
+        <p>Sua loja especializada em tintas imobiliárias, automotivas, texturas e acessórios em Diadema – SP. Abertos 24h para pedidos online.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/5511966921863" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departamentos</h4>
+        <ul>
+          <li><a href="#" onclick="filterDept('acrilica')">Tintas Acrílicas</a></li>
+          <li><a href="#" onclick="filterDept('emborrachada')">Emborrachadas</a></li>
+          <li><a href="#" onclick="filterDept('impermeabilizante')">Impermeabilizantes</a></li>
+          <li><a href="#" onclick="filterDept('textura')">Texturas</a></li>
+          <li><a href="#" onclick="filterDept('solvente')">Solventes</a></li>
+          <li><a href="#" onclick="filterDept('verniz')">Vernizes</a></li>
+          <li><a href="#" onclick="filterDept('selante')">Selantes</a></li>
+          <li><a href="#" onclick="filterDept('acessorio')">Ferramentaria</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Marcas</h4>
+        <ul>
+          <li><a href="#">Suvinil</a></li><li><a href="#">Coral</a></li><li><a href="#">Anjo</a></li>
+          <li><a href="#">Atlas</a></li><li><a href="#">Eucatex</a></li><li><a href="#">Atlas</a></li>
+          <li><a href="#">Maza</a></li><li><a href="#">Tigre</a></li><li><a href="#">Condor</a></li>
+          <li><a href="#">Baumgart</a></li><li><a href ="#">Salvabras</a></li><li><a href="#">Norton</a></li> 
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato Rápido</h4>
+        <ul>
+          <li><a href="https://wa.me/5511966921863"><i class="fab fa-whatsapp" style="margin-right:5px"></i>(11) 96692-1863</a></li>
+          <li><a href="tel:1151990484"><i class="fas fa-phone" style="margin-right:5px"></i>(11) 5199-0484</a></li>
+          <li><a href="#"><i class="fas fa-map-marker-alt" style="margin-right:5px"></i>Av. Alda, 1636</a></li>
+          <li><a href="#tendencias"><i class="fas fa-fire" style="margin-right:5px"></i>Tendências 2026</a></li>
+          <li><a href="mailto:contato@tintassupercasa.com.br"><i class="fas fa-envelope" style="margin-right:5px"></i>Email:supercasatintas@gmail.com </a></li>
+        </ul>
+        <div style="margin-top:16px;background:rgba(0,200,83,.15);border:1px solid rgba(0,200,83,.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:8px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#00E676;animation:pulseDot 1.2s infinite;flex-shrink:0"></div>
+          <span style="font-size:.78rem;color:#00E676;font-weight:600">Pedidos online 24h</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Tintas Super Casa – Todos os direitos reservados | CNPJ: 57.416.870/0001-63</p>
+      <div class="footer-badges">
+        <span class="footer-badge">🔒 Site Seguro</span>
+        <span class="footer-badge">✅ Loja Verificada</span>
+        <span class="footer-badge">💳 Até 10x sem juros</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkout-overlay" class="modal-overlay">
+  <div class="modal-box" style="max-width:440px">
+    <h3><i class="fas fa-bolt" style="color:var(--blue-mid)"></i> Finalizar Pedido</h3>
+    <div id="checkout-step-form">
+      <p>Preencha seus dados — não é preciso criar conta.</p>
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input class="modal-input" id="chk-nome" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label>Telefone / WhatsApp</label>
+        <input class="modal-input" id="chk-telefone" placeholder="(11) 90000-0000">
+      </div>
+      <div class="form-group">
+        <label>Endereço de entrega</label>
+        <input class="modal-input" id="chk-endereco" placeholder="Rua, número, bairro, cidade">
+      </div>
+      <div class="form-group">
+        <label>Forma de pagamento</label>
+        <div style="display:flex;gap:10px;margin-top:6px">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="radio" name="chk-pagamento" value="pix" checked> Pix</label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="radio" name="chk-pagamento" value="cartao"> Cartão</label>
+        </div>
+      </div>
+      <div class="alert-box" id="checkout-alert"></div>
+      <button class="btn-primary" id="btn-checkout-confirmar" onclick="confirmarPedido()"><i class="fas fa-check"></i> Confirmar Pedido</button>
+      <button class="btn-modal-cancel" style="width:100%;margin-top:10px" onclick="closeCheckout()">Cancelar</button>
+    </div>
+    <div id="checkout-step-pix" style="display:none;text-align:center">
+      <p>Escaneie o QR Code ou copie o código Pix abaixo para pagar:</p>
+      <div id="pix-qrcode" style="margin:14px 0;font-size:.8rem;word-break:break-all;background:var(--gray-light);border-radius:10px;padding:12px"></div>
+      <button class="btn-primary" onclick="copiarPix()"><i class="fas fa-copy"></i> Copiar código Pix</button>
+      <p style="margin-top:14px;font-size:.78rem" id="pix-status">Aguardando confirmação do pagamento...</p>
+      <button class="btn-modal-cancel" style="width:100%;margin-top:10px" onclick="closeCheckout()">Fechar</button>
+    </div>
+    <div id="checkout-step-cartao" style="display:none;text-align:center">
+      <p>O pagamento com cartão será processado em ambiente seguro da GetNet (os dados do cartão nunca passam pelo nosso servidor).</p>
+      <p style="font-size:.78rem;color:var(--text-body)">Essa etapa fica disponível assim que a integração com a GetNet estiver com as credenciais ativas.</p>
+      <button class="btn-modal-cancel" style="width:100%;margin-top:10px" onclick="closeCheckout()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART -->
+<div id="cart-overlay"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-cart" style="color:var(--blue-mid)"></i> Meu Carrinho</h3>
+    <button class="cart-close" id="cart-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cart-subtotal-val">R$ 0,00</span></div>
+    <div class="cart-subtotal"><span>Frete (Diadema)</span><span style="color:#4CAF50;font-weight:700">Grátis 🎉</span></div>
+    <div class="cart-total"><span>Total</span><span id="cart-total-val">R$ 0,00</span></div>
+    <div class="cart-installment" id="cart-installment"></div>
+    <div style="background:var(--gray-light);border-radius:10px;padding:12px;margin-bottom:14px;font-size:.78rem;color:var(--text-body)">
+      <div style="font-weight:700;margin-bottom:8px;color:var(--text-dark);font-size:.84rem"><i class="fas fa-credit-card" style="color:var(--blue-mid);margin-right:6px"></i>Formas de Pagamento</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="background:var(--white);border:1px solid var(--gray-mid);border-radius:6px;padding:3px 8px;font-size:.72rem"><i class="fas fa-money-bill" style="color:#4CAF50"></i> Dinheiro</span>
+        <span style="background:var(--white);border:1px solid var(--gray-mid);border-radius:6px;padding:3px 8px;font-size:.72rem"><i class="fas fa-credit-card" style="color:var(--blue-mid)"></i> Débito</span>
+        <span style="background:var(--white);border:1px solid var(--gray-mid);border-radius:6px;padding:3px 8px;font-size:.72rem"><i class="fas fa-credit-card" style="color:#9C27B0"></i> Crédito até 10x</span>
+        <span style="background:var(--white);border:1px solid var(--gray-mid);border-radius:6px;padding:3px 8px;font-size:.72rem"><i class="fab fa-pix" style="color:#00BFA5"></i> Pix</span>
+      </div>
+      <div style="margin-top:6px;font-size:.68rem;color:var(--text-body);font-style:italic">*Consulte condições de parcelamento</div>
+    </div>
+    <button class="btn-checkout" onclick="finalizarPedido()"><i class="fas fa-bolt"></i> Finalizar Pedido</button>
+    <a class="btn-checkout-wa" id="whatsapp-cart" href="#" target="_blank"><i class="fab fa-whatsapp"></i> Pedir pelo WhatsApp</a>
+  </div>
+</div>
+
+<!-- CEP MODAL -->
+<div class="cep-modal-overlay" id="cep-modal-overlay">
+  <div class="cep-modal">
+    <h3><i class="fas fa-map-marker-alt" style="color:var(--blue-mid)"></i> Calcular Entrega</h3>
+    <p>Informe seu CEP para verificar prazo e disponibilidade de entrega, ou adicione diretamente ao carrinho.</p>
+    <div class="cep-input-row">
+      <input type="text" id="cep-input" placeholder="00000-000" maxlength="9" oninput="formatCEP(this)">
+      <button class="btn-calc-frete" onclick="calcularFrete()"><i class="fas fa-search"></i> Calcular</button>
+    </div>
+    <div class="frete-result" id="frete-result"></div>
+    <div class="payment-section">
+      <h4><i class="fas fa-credit-card" style="color:var(--blue-mid)"></i> Formas de Pagamento</h4>
+      <div class="payment-icons">
+        <span class="pay-icon"><i class="fas fa-money-bill"></i> Dinheiro</span>
+        <span class="pay-icon"><i class="fas fa-credit-card"></i> Débito</span>
+        <span class="pay-icon"><i class="fas fa-credit-card" style="color:#9C27B0"></i> Crédito</span>
+        <span class="pay-icon"><i class="fab fa-pix" style="color:#00BFA5"></i> Pix</span>
+      </div>
+      <div class="installment-info" id="modal-installment">
+        <strong>Parcelamento em até 10x sem juros</strong> no cartão de crédito.<br>
+        <em style="font-size:.68rem">*Consulte condições de parcelamento na loja</em>
+      </div>
+    </div>
+    <div class="cep-modal-btns">
+      <button class="btn-cancelar" onclick="closeCepModal()">Pular</button>
+      <button class="btn-confirmar" onclick="addPendingToCart()"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
+    </div>
+    <span class="skip-cep" onclick="closeCepModal()">Adicionar sem informar CEP</span>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<div id="toast-container"></div>
+
+<script>
+/* ─── PRODUCTS DATA ── */
+const products = [
+  {id:1,name:'Tinta Acrílica Premium 18L',category:'acrilica',price:429.90,oldPrice:499.90,desc:'Cobertura superior em 2 demãos. Lavável e durável para interno/externo.',badge:'Mais Vendido',img:'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&q=80'},
+  {id:2,name:'Tinta Acrílica Suvinil 18L',category:'acrilica',price:399.90,oldPrice:449.90,desc:'Alta resistência à umidade, ideal para ambientes internos e externos.',badge:'',img:'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80'},
+  {id:3,name:'Tinta Emborrachada Coral 18L',category:'emborrachada',price:349.90,oldPrice:null,desc:'Proteção contra goteiras e infiltrações em lajes e telhados.',badge:'Novo',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80'},
+  {id:4,name:'Tinta Emborrachada Super 3,6L',category:'emborrachada',price:89.90,oldPrice:109.90,desc:'Impermeabilizante elástico para lajes, calhas e superfícies planas.',badge:'',img:'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80'},
+  {id:5,name:'Impermeabilizante Drylevis 18L',category:'impermeabilizante',price:319.90,oldPrice:379.90,desc:'Impermeabilizante de alta performance para pisos, muros e fundações.',badge:'',img:'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=400&q=80'},
+  {id:6,name:'Impermeabilizante Manta 4kg',category:'impermeabilizante',price:149.90,oldPrice:null,desc:'Manta asfáltica líquida para lajes e terraços. Fácil aplicação.',badge:'Novo',img:'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&q=80'},
+  {id:7,name:'Grafiato Externo 25kg',category:'textura',price:99.90,oldPrice:null,desc:'Textura decorativa para fachadas e ambientes internos.',badge:'',img:'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=400&q=80'},
+  {id:8,name:'Textura Rústica Interna 25kg',category:'textura',price:119.90,oldPrice:149.90,desc:'Efeito rústico para paredes internas. Diversas texturas e acabamentos.',badge:'',img:'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80'},
+  {id:9,name:'Aguarrás Mineral 900ml',category:'solvente',price:18.90,oldPrice:null,desc:'Solvente mineral para diluição de tintas a óleo, esmaltes e vernizes.',badge:'',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80'},
+  {id:10,name:'Thinner Profissional 1L',category:'solvente',price:22.90,oldPrice:29.90,desc:'Thinner para diluição de esmaltes sintéticos e tintas automotivas.',badge:'',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80'},
+  {id:11,name:'Selante Acrílico Branco 280ml',category:'selante',price:14.90,oldPrice:null,desc:'Vedação de juntas, frestas e rachaduras. Secagem rápida.',badge:'',img:'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80'},
+  {id:12,name:'Selante Poliuretano 400ml',category:'selante',price:32.90,oldPrice:39.90,desc:'Alta elasticidade para vedação de juntas em pisos e fachadas.',badge:'',img:'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80'},
+  {id:13,name:'Verniz Premium Marítimo 3,6L',category:'verniz',price:89.90,oldPrice:null,desc:'Proteção e brilho para madeiras internas e externas. Alta durabilidade.',badge:'',img:'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=400&q=80'},
+  {id:14,name:'Verniz PU Brilhante 900ml',category:'verniz',price:59.90,oldPrice:74.90,desc:'Verniz poliuretânico para móveis e pisos de madeira. Acabamento brilhante.',badge:'Novo',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80'},
+  {id:15,name:'Kit Pintura Atlas Completo',category:'acessorio',price:59.90,oldPrice:79.90,desc:'Rolo 23cm + bandeja + pincel 3" + fita crepe. Kit profissional.',badge:'Promoção',img:'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&q=80'},
+  {id:16,name:'Tinta Automotiva Profissional 900ml',category:'automotiva',price:299.90,oldPrice:329.90,desc:'Esmalte automotivo de alta resistência para carroceria e peças.',badge:'',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80'},
+];
+function getCartKey() {
+  return 'tsc_cart_guest';
+}
+
+/* ─── CART ── */
+let cart = JSON.parse(localStorage.getItem(getCartKey()) || '[]');
+let pendingProduct = null;
+function saveCart() {
+  localStorage.setItem(getCartKey(), JSON.stringify(cart));
+}
+
+function openCepModal(id){
+  pendingProduct = id;
+  const p = products.find(x=>x.id===id);
+  const inst = Math.ceil(p.price/10).toFixed(2).replace('.',',');
+  document.getElementById('modal-installment').innerHTML = `<strong>Parcelamento em até 10x sem juros</strong><br><span style="font-size:.82rem">10x de R$ ${inst} no cartão de crédito</span><br><em style="font-size:.68rem">*Consulte condições de parcelamento na loja</em>`;
+  document.getElementById('cep-input').value='';
+  const fr = document.getElementById('frete-result');
+  fr.className='frete-result';fr.textContent='';
+  document.getElementById('cep-modal-overlay').classList.add('open');
+}
+
+function closeCepModal(){document.getElementById('cep-modal-overlay').classList.remove('open')}
+
+function addPendingToCart(){
+  if(pendingProduct){addToCart(pendingProduct,true);pendingProduct=null;closeCepModal()}
+}
+
+function addToCart(id, skipModal=false){
+  // Prefer session-managed addToCart when available (handles guests and logged users)
+  if (typeof window !== 'undefined' && typeof window.addToCart === 'function' && window.addToCart !== addToCart) {
+    return window.addToCart(id, skipModal);
+  }
+  if(!skipModal){openCepModal(id);return}
+  const product = products.find(p=>p.id===id);
+  const existing = cart.find(i=>i.id===id);
+  if(existing) existing.qty++;
+  else cart.push({...product,qty:1});
+  saveCart();updateCartUI();
+  showToast(`✅ ${product.name} adicionado!`);
+}
+
+function removeFromCart(id){
+  if (typeof window !== 'undefined' && typeof window.removeFromCart === 'function' && window.removeFromCart !== removeFromCart) {
+    return window.removeFromCart(id);
+  }
+  cart=cart.filter(i=>i.id!==id);saveCart();updateCartUI();renderCartItems()
+}
+function changeQty(id,delta){
+  if (typeof window !== 'undefined' && typeof window.changeQty === 'function' && window.changeQty !== changeQty) {
+    return window.changeQty(id, delta);
+  }
+  const item=cart.find(i=>i.id===id);
+  if(!item)return;
+  item.qty+=delta;
+  if(item.qty<=0)removeFromCart(id);
+  else{saveCart();updateCartUI();renderCartItems()}
+}
+
+function getCurrentCart(){
+  if (typeof window !== 'undefined' && Array.isArray(window.cart)) return window.cart;
+  return Array.isArray(cart) ? cart : [];
+}
+
+function updateCartUI(){
+  const current = getCurrentCart();
+  document.getElementById('cart-count').textContent = current.reduce((s,i)=>s+(i.qty||i.quantidade||1),0);
+  renderCartItems();
+}
+
+function renderCartItems(){
+  const container=document.getElementById('cart-items');
+  const footer=document.getElementById('cart-footer');
+  const current = getCurrentCart();
+  if(current.length===0){
+    container.innerHTML=`<div class="cart-empty"><i class="fas fa-shopping-cart"></i><p>Seu carrinho está vazio.</p></div>`;
+    footer.style.display='none';return;
+  }
+  footer.style.display='block';
+  let html='',subtotal=0;
+  current.forEach(item=>{
+    const qty = item.qty || item.quantidade || 1;
+    const price = item.price || item.preco || 0;
+    const t=price*qty;subtotal+=t;
+    html+=`<div class="cart-item">
+      <div class="cart-item-img"><img src="${item.img||''}" alt="${item.name||item.nome}"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name||item.nome}</div>
+        <div class="cart-item-price">R$ ${price.toFixed(2).replace('.',',')}</div>
+        <div class="cart-item-controls">
+          <button class="qty-btn" onclick="changeQty(${item.id||item.produto_id},-1)">−</button>
+          <span class="qty-val">${qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id||item.produto_id},1)">+</button>
+          <span style="margin-left:auto;font-weight:700;font-size:.86rem;color:var(--blue-dark)">R$ ${t.toFixed(2).replace('.',',')}</span>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${item.id||item.produto_id})"><i class="fas fa-trash-alt"></i></button>
+    </div>`;
+  });
+  container.innerHTML=html;
+  document.getElementById('cart-subtotal-val').textContent=`R$ ${subtotal.toFixed(2).replace('.',',')}`;
+  document.getElementById('cart-total-val').textContent=`R$ ${subtotal.toFixed(2).replace('.',',')}`;
+  const inst=Math.ceil(subtotal/10).toFixed(2).replace('.',',');
+  document.getElementById('cart-installment').textContent=`💳 10x de R$ ${inst} sem juros — consulte condições`;
+  const msg='Olá! Gostaria de fazer um pedido:\n\n'+current.map(i=>`• ${i.name||i.nome} x${i.qty||i.quantidade||1} = R$ ${((i.price||i.preco)*(i.qty||i.quantidade||1)).toFixed(2).replace('.',',')}`).join('\n')+`\n\n*Total: R$ ${subtotal.toFixed(2).replace('.',',')}*`;
+  document.getElementById('whatsapp-cart').href=`https://wa.me/5511966921863?text=${encodeURIComponent(msg)}`;
+}
+
+/* ─── CHECKOUT — conecta com o back-end (carrinho por cookie, sem login) ── */
+const API_BASE = window.location.origin + '/api';
+let pedidoAtual = null;
+
+function openCheckout(){
+  if(!cart.length){ showToast('⚠️ Seu carrinho está vazio.','error'); return; }
+  document.getElementById('checkout-step-form').style.display='block';
+  document.getElementById('checkout-step-pix').style.display='none';
+  document.getElementById('checkout-step-cartao').style.display='none';
+  document.getElementById('checkout-overlay').classList.add('open');
+}
+function closeCheckout(){
+  document.getElementById('checkout-overlay').classList.remove('open');
+}
+function finalizarPedido(){ openCheckout(); }
+
+async function confirmarPedido(){
+  const nome = document.getElementById('chk-nome').value.trim();
+  const telefone = document.getElementById('chk-telefone').value.trim();
+  const endereco = document.getElementById('chk-endereco').value.trim();
+  const forma_pagamento = document.querySelector('input[name="chk-pagamento"]:checked').value;
+
+  if(!nome || !telefone || !endereco){
+    setAlert('checkout-alert','error','Preencha nome, telefone e endereço.');
+    return;
+  }
+
+  const btn = document.getElementById('btn-checkout-confirmar');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-circle-notch fa-spin-custom"></i> Enviando...';
+
+  try {
+    // 1) Sincroniza o carrinho local com o carrinho do servidor (cookie cart_token)
+    for (const item of cart) {
+      await fetch(API_BASE + '/carrinho', {
+        method: 'POST', credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ produto_id: item.id, nome: item.name, quantidade: item.qty || 1, img: item.img || '' })
+      });
+    }
+
+    // 2) Cria o pedido (total é sempre recalculado no servidor com base no banco)
+    const resPedido = await fetch(API_BASE + '/pedidos', {
+      method: 'POST', credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, telefone, endereco, forma_pagamento })
+    });
+    const dataPedido = await resPedido.json();
+    if (!resPedido.ok) { setAlert('checkout-alert','error', dataPedido.erro || 'Erro ao criar pedido.'); return; }
+
+    pedidoAtual = dataPedido;
+    cart = []; saveCart(); updateCartUI();
+
+    if (forma_pagamento === 'pix') {
+      const resPix = await fetch(API_BASE + `/pagamentos/pix/${dataPedido.pedido_id}`, {
+        method: 'POST', credentials: 'include'
+      });
+      const pix = await resPix.json();
+      if (!resPix.ok) { setAlert('checkout-alert','error', pix.erro || 'Erro ao gerar Pix.'); return; }
+
+      document.getElementById('pix-qrcode').textContent = pix.copia_e_cola || 'Código Pix indisponível';
+      window.__pixCopiaECola = pix.copia_e_cola || '';
+      document.getElementById('checkout-step-form').style.display='none';
+      document.getElementById('checkout-step-pix').style.display='block';
+      if (pix.simulado) document.getElementById('pix-status').textContent = '⚠️ Ambiente de testes (sandbox simulado) — nenhum valor real é cobrado.';
+    } else {
+      document.getElementById('checkout-step-form').style.display='none';
+      document.getElementById('checkout-step-cartao').style.display='block';
+    }
+  } catch (err) {
+    setAlert('checkout-alert','error','Erro ao conectar com o servidor.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check"></i> Confirmar Pedido';
+  }
+}
+
+function copiarPix(){
+  navigator.clipboard.writeText(window.__pixCopiaECola || '');
+  showToast('✅ Código Pix copiado!','success');
+}
+
+/* ─── CEP ── */
+function formatCEP(input){
+  let v=input.value.replace(/\D/g,'');
+  if(v.length>5)v=v.slice(0,5)+'-'+v.slice(5,8);
+  input.value=v;
+}
+
+function calcularFrete(){
+  const cep=document.getElementById('cep-input').value.replace(/\D/g,'');
+  const el=document.getElementById('frete-result');
+  if(cep.length!==8){el.className='frete-result show err';el.innerHTML='<i class="fas fa-exclamation-triangle"></i> CEP inválido. Digite 8 dígitos.';return}
+  el.className='frete-result show ok';
+  const diadema=['09900','09901','09910','09911','09920','09921','09930','09940','09941','09950','09960','09970','09980','09990'];
+  const prefix=cep.slice(0,5);
+  if(diadema.some(d=>prefix.startsWith(d.slice(0,4)))){
+    el.innerHTML='<i class="fas fa-check-circle"></i> <strong>Entrega GRÁTIS!</strong> Prazo: Hoje (pedidos até 15h)';
+  } else {
+    el.innerHTML='<i class="fas fa-truck"></i> <strong>Entrega disponível.</strong> Prazo: 1–2 dias úteis. Frete a consultar.';
+  }
+}
+
+/* ─── RENDER PRODUCTS ── */
+function categoryLabel(cat){
+  return {acrilica:'Acrílica',emborrachada:'Emborrachada',impermeabilizante:'Impermeabilizante',textura:'Textura',solvente:'Solvente',selante:'Selante',verniz:'Verniz',acessorio:'Ferramentaria',automotiva:'Automotiva'}[cat]||cat;
+}
+
+function renderProducts(filter='all'){
+  const grid=document.getElementById('products-grid');
+  const filtered=filter==='all'?products:products.filter(p=>p.category===filter);
+  grid.innerHTML=filtered.map(p=>{
+    const inst=Math.ceil(p.price/10).toFixed(2).replace('.',',');
+    return `<div class="product-card reveal" data-category="${p.category}">
+      ${p.badge?`<div class="product-badge ${p.badge==='Novo'?'new':''}">${p.badge}</div>`:''}
+      <div class="product-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="product-info">
+        <div class="product-category">${categoryLabel(p.category)}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-price-row">
+          <span class="product-price">R$ ${p.price.toFixed(2).replace('.',',')}</span>
+          ${p.oldPrice?`<span class="product-price-old">R$ ${p.oldPrice.toFixed(2).replace('.',',')}</span>`:''}
+        </div>
+        <div class="installment">💳 10x de R$ ${inst} sem juros*</div>
+        <button class="btn-cart" onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el));
+}
+
+/* ─── FILTER ── */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.filter);
+  });
+});
+
+function filterDept(cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  const target=document.querySelector(`.filter-btn[data-filter="${cat}"]`);
+  if(target)target.classList.add('active');
+  renderProducts(cat);
+  document.getElementById('produtos').scrollIntoView({behavior:'smooth'});
+}
+
+/* ─── CART UI ── */
+document.getElementById('cart-btn').addEventListener('click',()=>{
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+});
+document.getElementById('cart-close').addEventListener('click',()=>{document.getElementById('cart-drawer').classList.remove('open');document.getElementById('cart-overlay').classList.remove('open')});
+document.getElementById('cart-overlay').addEventListener('click',()=>{document.getElementById('cart-drawer').classList.remove('open');document.getElementById('cart-overlay').classList.remove('open')});
+document.getElementById('cep-modal-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeCepModal()});
+
+/* ─── DARK MODE ── */
+let dark=localStorage.getItem('tsc_dark')==='1';
+function applyDark(){document.documentElement.setAttribute('data-theme',dark?'dark':'light');document.getElementById('dark-icon').className=dark?'fas fa-sun':'fas fa-moon';localStorage.setItem('tsc_dark',dark?'1':'0')}
+applyDark();
+document.getElementById('dark-toggle').addEventListener('click',()=>{dark=!dark;applyDark()});
+
+/* ─── LOADER ── */
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),2000)});
+
+/* ─── PROMO BANNER ── */
+document.getElementById('close-banner').addEventListener('click',()=>{document.getElementById('promo-banner').style.display='none'});
+
+/* ─── SCROLL REVEAL ── */
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
+
+/* ─── BACK TOP ── */
+window.addEventListener('scroll',()=>{document.getElementById('back-top').classList.toggle('show',window.scrollY>500)},{passive:true});
+
+/* ─── HAMBURGER ── */
+document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('mobile-menu').classList.toggle('open')});
+function closeMob(){document.getElementById('mobile-menu').classList.remove('open')}
+
+/* ─── SEARCH ── */
+const searchInput=document.getElementById('search-input');
+const searchResults=document.getElementById('search-results');
+searchInput.addEventListener('input',()=>{
+  const q=searchInput.value.toLowerCase().trim();
+  if(!q){searchResults.style.display='none';return}
+  const matches=products.filter(p=>p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q));
+  if(!matches.length){searchResults.style.display='none';return}
+  searchResults.innerHTML=matches.slice(0,5).map(p=>`<div class="search-result-item" onclick="addToCart(${p.id});searchInput.value='';searchResults.style.display='none'"><strong>${p.name}</strong> – R$ ${p.price.toFixed(2).replace('.',',')}</div>`).join('');
+  searchResults.style.display='block';
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-bar'))searchResults.style.display='none'});
+
+/* ─── TOAST ── */
+function setAlert(id, type, msg){
+  const box = document.getElementById(id);
+  if (!box) return;
+  box.className = 'alert-box show ' + type;
+  box.textContent = msg;
+}
+function showToast(msg,type=''){
+  const t=document.createElement('div');
+  t.className='toast'+(type?' '+type:'');t.innerHTML=msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+/* ─── COUNTDOWN ── */
+function renderCountdown(id,endDate){
+  const el=document.getElementById(id);if(!el)return;
+  function tick(){
+    const diff=endDate-Date.now();
+    if(diff<=0){el.innerHTML='<span style="color:rgba(255,255,255,.6);font-size:.78rem">Promoção encerrada</span>';return}
+    const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    el.innerHTML=`<div class="countdown-box"><strong>${String(h).padStart(2,'0')}</strong><span>Horas</span></div><div class="countdown-box"><strong>${String(m).padStart(2,'0')}</strong><span>Min</span></div><div class="countdown-box"><strong>${String(s).padStart(2,'0')}</strong><span>Seg</span></div>`;
+  }
+  tick();setInterval(tick,1000);
+}
+renderCountdown('countdown1',Date.now()+14*3600000+23*60000);
+renderCountdown('countdown2',Date.now()+6*3600000+47*60000);
+renderCountdown('countdown3',Date.now()+2*24*3600000+3*3600000);
+
+/* ─── EMAIL FORM ── */
+function enviarEmail(event){
+  event.preventDefault();
+  const nome=document.getElementById('f-nome').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const assunto=document.getElementById('f-assunto').value;
+  const msg=document.getElementById('f-msg').value.trim();
+  
+  if(!nome||!msg){showToast('⚠️ Preencha nome e mensagem!','error');return}
+  if(!email){showToast('⚠️ Informe seu email!','error');return}
+  
+  const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){showToast('⚠️ Email inválido!','error');return}
+  
+  const btn=event.target;
+  btn.disabled=true;
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Enviando...';
+  
+  // Enviar via Formspree (gratuito, funciona direto)
+  const formData=new FormData();
+  formData.append('name',nome);
+  formData.append('email',email);
+  formData.append('subject',assunto);
+  formData.append('message',msg);
+  
+  fetch('https://formspree.io/f/xyzpwkql',{
+    method:'POST',
+    body:formData,
+    headers:{'Accept':'application/json'}
+  })
+    .then(r=>{
+      if(r.ok){
+        showToast('✅ Email enviado com sucesso!','success');
+        document.getElementById('f-nome').value='';
+        document.getElementById('f-email').value='';
+        document.getElementById('f-assunto').selectedIndex=0;
+        document.getElementById('f-msg').value='';
+      }else{
+        throw new Error('Erro no envio');
+      }
+    })
+    .catch(err=>{
+      console.error('Erro:',err);
+      showToast('❌ Erro ao enviar. Tente novamente!','error');
+    })
+    .finally(()=>{
+      btn.disabled=false;
+      btn.innerHTML='<i class="fas fa-envelope"></i> Enviar por Email';
+    });
+}
+
+/* ─── WHATSAPP FORM ── */
+function enviarWhatsApp(){
+  const nome=document.getElementById('f-nome').value.trim();
+  const tel=document.getElementById('f-tel').value.trim();
+  const assunto=document.getElementById('f-assunto').value;
+  const msg=document.getElementById('f-msg').value.trim();
+  if(!nome||!msg){showToast('⚠️ Preencha nome e mensagem!','error');return}
+  const text=`Olá! Sou ${nome}${tel?' ('+tel+')':''}.\nAssunto: ${assunto}\n\n${msg}`;
+  window.open(`https://wa.me/5511966921863?text=${encodeURIComponent(text)}`,'_blank');
+  showToast('✅ Redirecionando para o WhatsApp!','success');
+}
+
+/* ─── NAV ACTIVE ── */
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-link,.mob-section a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-130)current=s.id});
+  navLinks.forEach(a=>{a.classList.remove('active');if(a.getAttribute('href')==='#'+current)a.classList.add('active')});
+},{passive:true});
+
+/* ─── INIT ── */
+renderProducts();updateCartUI();
+
+</script>
+</body>
+</html>
