@@ -262,6 +262,12 @@ section{padding:72px 24px}
 .cep-modal-overlay.open{opacity:1;visibility:visible}
 .cep-modal{background:var(--white);border-radius:20px;padding:32px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.95);transition:transform .3s}
 .cep-modal-overlay.open .cep-modal{transform:scale(1)}
+
+/* MODAL GENÉRICO (checkout, etc.) */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;visibility:hidden;transition:var(--transition)}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-box{background:var(--white);border-radius:20px;padding:32px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:scale(.95);transition:transform .3s;max-height:90vh;overflow-y:auto}
+.modal-overlay.open .modal-box{transform:scale(1)}
 .cep-modal h3{font-size:1.15rem;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:10px}
 .cep-modal p{font-size:.86rem;color:var(--text-body);margin-bottom:20px;line-height:1.6}
 .cep-input-row{display:flex;gap:10px;margin-bottom:14px}
