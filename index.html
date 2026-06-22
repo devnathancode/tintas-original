@@ -1729,6 +1729,31 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     submitBtn.textContent = originalText;
   }
 });
+document.getElementById("contatoForm")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const form = e.target;
+    const dados = new FormData(form);
+
+    const resposta = await fetch(
+      "https://api.web3forms.com/submit",
+      {
+        method: "POST",
+        body: dados
+      }
+    );
+
+    const resultado = await resposta.json();
+
+    if(resultado.success){
+        alert("Mensagem enviada com sucesso!");
+        form.reset();
+    } else {
+        alert("Erro ao enviar");
+    }
+});
 
 </script>
 </body>
