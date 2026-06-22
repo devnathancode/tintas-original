@@ -1081,22 +1081,25 @@ footer{background:linear-gradient(180deg,#0A2568 0%,#071A4A 100%);color:#fff;pad
       </div>
       <div class="contato-form reveal-right">
         <h3>Envie sua Mensagem</h3>
-        <div class="form-group"><label>Nome *</label><input type="text" id="f-nome" placeholder="Seu nome completo"></div>
-        <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="Seu email"></div>
-        <div class="form-group"><label>Assunto</label>
-          <select id="f-assunto">
-            <option>Dúvida sobre produto</option>
-            <option>Orçamento</option>
-            <option>Pedido / Compra</option>
-            <option>Entrega</option>
-            <option>Outro</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Mensagem *</label><textarea id="f-msg" placeholder="Descreva como podemos te ajudar..."></textarea></div>
-        <button class="btn-submit" type="button" onclick="enviarEmail(event)"><i class="fas fa-envelope"></i> Enviar por Email</button>
+        <form action="https://api.w3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="w3f_8da948f3163baad506f35dbe42ba57b4bfacfddf37259d5f">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" required></textarea>
+          </div>
+          <input type="hidden" name="_gotcha" style="display:none">
+          <button type="submit" class="btn-submit">Send</button>
+        </form>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- FOOTER -->
